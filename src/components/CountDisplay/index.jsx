@@ -1,7 +1,7 @@
 import './countDisplay.css'
-export default function CountDisplay({timerDays, timerHours, timerMinutes, timerSeconds}){
-  return(
-    <div className="display">
+export default function CountDisplay ({ timerDays, timerHours, timerMinutes, timerSeconds }) {
+  return (
+    <div className='display'>
       <div>
         <p>{timerDays}</p>
         <p><small>Days</small></p>
