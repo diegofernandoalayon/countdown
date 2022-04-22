@@ -1,6 +1,9 @@
 import { useState, useRef } from "react"
 export default function CountDown(){
   const [timerSeconds, setTimerSeconds] = useState('00')
+  const [timerMinutes, setTimerMinutes] = useState('00')
+  const [timerHours, setTimerHours] = useState('00')
+  const [timerDays, setTimerDays] = useState('00')
   let interval = useRef()
 
   const startTimer = ()=>{
@@ -10,25 +13,24 @@ export default function CountDown(){
     interval = setInterval(()=>{
       const now = new Date().getTime()
       const distance = countdownTime - now
-      console.log('hola')
-      console.log(distance)
-      // setI(i+1)
-      // console.log(i)
-      //se puede coger la fecha del momento y sumarle el tiempo indicado, y luego a ese momento futuro que se generaria empezar a hacerle el proceso de restar
-
-      // o poner el tiempo como un valor y tener en cuenta cuantos segundos se le quitan a ese valor
-
+      
+      const days = Math.floor(distance / (1000*60*60*24))
+      const hours = Math.floor((distance %(1000*60*60*24))/(1000*60*60))
+      const minutes = Math.floor((distance %(1000*60*60))/(1000*60))
       const seconds = Math.floor((distance %(1000*60))/1000)
       if(distance<0){
         clearInterval(interval.current)
       }else{
         setTimerSeconds(seconds)
+        setTimerMinutes(minutes)
+        setTimerHours(hours)
+        setTimerDays(days)
       }
     },1000)
   }
 return (
   <>
-    <h2>{timerSeconds}</h2>
+    <h2>{timerDays}:{timerHours}:{timerMinutes}:{timerSeconds}</h2>
     <button onClick={startTimer}>iniciar</button>
     <button onClick={()=>console.log('todo')}>paustar</button>
     
