@@ -1,0 +1,13 @@
+.display{
+  display: grid;
+  grid-template-columns: repeat(7,1fr);
+  padding: 3em;
+  text-align: center;
+}
+.display div p {
+  margin: 0;
+}
+.display div p:first-child,.display span {
+  /* margin: 0; */
+  font-size: 3em;
+}
