@@ -1,4 +1,5 @@
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
+import CountDisplay from "../CountDisplay"
 export default function CountDown(){
   const [timerSeconds, setTimerSeconds] = useState('00')
   const [timerMinutes, setTimerMinutes] = useState('00')
@@ -28,11 +29,20 @@ export default function CountDown(){
       }
     },1000)
   }
+  useEffect(()=>{
+    startTimer()
+    return () => clearInterval(interval)
+  })
 return (
   <>
-    <h2>{timerDays}:{timerHours}:{timerMinutes}:{timerSeconds}</h2>
-    <button onClick={startTimer}>iniciar</button>
-    <button onClick={()=>console.log('todo')}>paustar</button>
+    {/* <h2>{timerDays}:{timerHours}:{timerMinutes}:{timerSeconds}</h2> */}
+    <CountDisplay 
+      timerDays={timerDays} 
+      timerHours={timerHours} 
+      timerMinutes={timerMinutes} 
+      timerSeconds={timerSeconds}/>
+    {/* <button onClick={startTimer}>iniciar</button>
+    <button onClick={()=>console.log('todo')}>paustar</button> */}
     
   </>
 )
